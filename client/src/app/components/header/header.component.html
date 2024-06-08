@@ -1,0 +1,36 @@
+
+<body class="bg-gray-100">
+
+  <!-- Header -->
+  <header class="bg-gray-900 text-white">
+      <div class="container mx-auto flex justify-between items-center py-4 px-6">
+          <h1 class="text-2xl font-bold">Shop Loa Cao Cấp</h1>
+          <div class="relative">
+              <input [(ngModel)]="filterValue" (ngModelChange)="filter()" class="w-64 h-10 pl-4 pr-10 rounded-lg border border-gray-300 focus:outline-none text-black" type="search" placeholder="Tìm kiếm">
+              <button class="absolute right-0 top-0 mt-2 mr-2">
+                  <svg class="h-6 w-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35M10 18a8 8 0 100-16 8 8 0 000 16z"></path>
+                  </svg>
+              </button>
+          </div>
+          <nav class="flex space-x-6">
+              <a href="/" class="text-lg hover:text-gray-400 pt-2 ">Trang Chủ</a>
+              <a [routerLink]="['admin/products/list']" class="text-lg hover:text-gray-400 pt-2">Sản Phẩm</a>
+              <a href="#about" class="text-lg hover:text-gray-400 pt-2">Giới Thiệu</a>
+              <a href="#contact" class="text-lg hover:text-gray-400 pt-2">Liên Hệ</a>
+              <a [routerLink]="['login']" class="text-lg bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-lg">Đăng nhập</a>
+              <a [routerLink]="['register']" class="text-lg bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded-lg">Đăng ký</a>
+          </nav>
+      </div>
+  </header>
+  
+
+  <!-- Banner -->
+  <div class="relative w-full h-96 bg-cover bg-center" style="background-image: url('https://loakeodidong.com.vn/products/category/banner-loa-keo-desktop.jpg');">
+      <div class="absolute bottom-10 left-10 bg-black bg-opacity-50 text-white py-2 px-4 rounded-lg">
+          <h2 class="text-3xl font-bold">Chất Lượng Âm Thanh Đỉnh Cao</h2>
+      </div>
+  </div>
+
+</body>
+

@@ -1,0 +1,85 @@
+<div class="container mx-auto mt-20 p-8 bg-gray-100 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold text-center mb-8">Add Product</h2>
+  <form [formGroup]="addProductForm" (ngSubmit)="handleCreateProduct()">
+    <!-- Existing form fields -->
+
+    <div class="mb-4">
+      <label for="title" class="block text-gray-700">Title</label>
+      <input type="text" id="title" formControlName="title" class="w-full p-2 border border-gray-300 rounded mt-1">
+      <div
+        *ngIf="addProductForm.get('title')?.invalid && (addProductForm.get('title')?.dirty || addProductForm.get('title')?.touched)"
+        class="text-red-500">
+        <div *ngIf="addProductForm.get('title')?.errors?.['required']">Title is required.</div>
+        <div *ngIf="addProductForm.get('title')?.errors?.['minlength']">Title must be at least 6 characters long.</div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="image" class="block text-gray-700">Image</label>
+      <input type="text" id="image" formControlName="image" class="w-full p-2 border border-gray-300 rounded mt-1">
+      <div
+        *ngIf="addProductForm.get('image')?.invalid && (addProductForm.get('image')?.dirty || addProductForm.get('image')?.touched)"
+        class="text-red-500">
+        <div *ngIf="addProductForm.get('image')?.errors?.['required']">Image is required.</div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="description" class="block text-gray-700">Description</label>
+      <textarea id="description" formControlName="description"
+        class="w-full p-2 border border-gray-300 rounded mt-1"></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label for="price" class="block text-gray-700">Price</label>
+      <input type="number" id="price" formControlName="price" class="w-full p-2 border border-gray-300 rounded mt-1">
+      <div
+        *ngIf="addProductForm.get('price')?.invalid && (addProductForm.get('price')?.dirty || addProductForm.get('price')?.touched)"
+        class="text-red-500">
+        <div *ngIf="addProductForm.get('price')?.errors?.['required']">Price is required.</div>
+        <div *ngIf="addProductForm.get('price')?.errors?.['min']">Price must be greater than 0.</div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="category" class="block text-gray-700">Category</label>
+      <select id="category" formControlName="category" class="w-full p-2 border border-gray-300 rounded mt-1">
+        <option value="" disabled>Select Category</option>
+        <option *ngFor="let category of categories" [value]="category._id">{{category.name}}</option>
+      </select>
+      <div
+        *ngIf="addProductForm.get('category')?.invalid && (addProductForm.get('category')?.dirty || addProductForm.get('category')?.touched)"
+        class="text-red-500">
+        <div *ngIf="addProductForm.get('category')?.errors?.['required']">Category is required.</div>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="startAt" class="form-label">Start At</label>
+      <input type="datetime-local" class="form-control" id="startAt" formControlName="startAt" />
+    </div>
+
+    <div class="mb-3">
+      <label for="times" class="form-label">Select Times</label>
+      <select class="form-control" id="times" formControlName="times">
+        <option value="">Select Time</option>
+        <option value="15">15p</option>
+        <option value="30">30p</option>
+        <option value="60">1h</option>
+      </select>
+    </div>
+
+    <div class="mb-4">
+      <label class="inline-flex items-center">
+        <input type="checkbox" formControlName="isShow" class="form-checkbox">
+        <span class="ml-2 text-gray-700">Show Product</span>
+      </label>
+    </div>
+
+
+    <div class="text-center">
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+        [disabled]="addProductForm.invalid">Add Product</button>
+    </div>
+  </form>
+</div>

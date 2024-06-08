@@ -1,0 +1,75 @@
+<div class="container mx-auto mt-20 p-8 bg-gray-100 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold text-center mb-8">Edit Product</h2>
+  <form [formGroup]="editProductForm" (ngSubmit)="handleEditProduct()">
+    <!-- Existing form fields -->
+
+    <div class="mb-4">
+      <label for="title" class="block text-gray-700">Title</label>
+      <input type="text" id="title" formControlName="title" class="w-full p-2 border border-gray-300 rounded mt-1">
+      <div *ngIf="editProductForm.get('title')?.invalid && (editProductForm.get('title')?.dirty || editProductForm.get('title')?.touched)" class="text-red-500">
+        <div *ngIf="editProductForm.get('title')?.errors?.['required']">Title is required.</div>
+        <div *ngIf="editProductForm.get('title')?.errors?.['minlength']">Title must be at least 6 characters long.</div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="image" class="block text-gray-700">Image</label>
+      <input type="text" id="image" formControlName="image" class="w-full p-2 border border-gray-300 rounded mt-1">
+      <div *ngIf="editProductForm.get('image')?.invalid && (editProductForm.get('image')?.dirty || editProductForm.get('image')?.touched)" class="text-red-500">
+        <div *ngIf="editProductForm.get('image')?.errors?.['required']">Image is required.</div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="description" class="block text-gray-700">Description</label>
+      <textarea id="description" formControlName="description" class="w-full p-2 border border-gray-300 rounded mt-1"></textarea>
+    </div>
+
+    <div class="mb-4">
+      <label for="price" class="block text-gray-700">Price</label>
+      <input type="number" id="price" formControlName="price" class="w-full p-2 border border-gray-300 rounded mt-1">
+      <div *ngIf="editProductForm.get('price')?.invalid && (editProductForm.get('price')?.dirty || editProductForm.get('price')?.touched)" class="text-red-500">
+        <div *ngIf="editProductForm.get('price')?.errors?.['required']">Price is required.</div>
+        <div *ngIf="editProductForm.get('price')?.errors?.['min']">Price must be greater than 0.</div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label for="category" class="block text-gray-700">Category</label>
+      <select id="category" formControlName="category" class="w-full p-2 border border-gray-300 rounded mt-1">
+        <option value="" disabled>Select Category</option>
+        <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+      </select>
+      <div *ngIf="editProductForm.get('category')?.invalid && (editProductForm.get('category')?.dirty || editProductForm.get('category')?.touched)" class="text-red-500">
+        <div *ngIf="editProductForm.get('category')?.errors?.['required']">Category is required.</div>
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <label class="inline-flex items-center">
+        <input type="checkbox" formControlName="isShow" class="form-checkbox">
+        <span class="ml-2 text-gray-700">Show Product</span>
+      </label>
+    </div>
+
+    <!-- New fields for startAt and times -->
+    <div class="mb-3">
+      <label for="startAt" class="form-label">Start At</label>
+      <input type="datetime-local" class="form-control" id="startAt" formControlName="startAt" />
+    </div>
+
+    <div class="mb-3">
+      <label for="times" class="form-label">Select Times</label>
+      <select class="form-control" id="times" formControlName="times">
+        <option value="">Select Time</option>
+        <option value="15">15p</option>
+        <option value="30">30p</option>
+        <option value="60">1h</option>
+      </select>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600" [disabled]="editProductForm.invalid">Update Product</button>
+    </div>
+  </form>
+</div>

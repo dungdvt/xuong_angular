@@ -1,0 +1,55 @@
+<div class="container mx-auto mt-20 p-8 bg-gray-100 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold text-center mb-8">Danh sách sản phẩm</h2>
+  <input [(ngModel)]="filterValue" (ngModelChange)="filter()"
+    class="w-64 h-10 pl-4 pr-10 rounded-lg border border-gray-300 focus:outline-none text-black" type="search"
+    placeholder="Tìm kiếm">
+  <button [routerLink]="['/admin/products/add']" class="p-2 bg-green-500 text-white border-2 rounded rounded-5 w-auto"
+    type="button">
+    Add
+  </button>
+  <div class="overflow-x-auto">
+    <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+      <thead>
+        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+          <th class="py-3 px-6 text-left">STT</th>
+          <th class="py-3 px-6 text-left">ID</th>
+          <th class="py-3 px-6 text-left">TITLE</th>
+          <th class="py-3 px-6 text-left">Image</th>
+          <th class="py-3 px-6 text-left">Description</th>
+          <th class="py-3 px-6 text-left">Category</th>
+          <th class="py-3 px-6 text-left">Price</th>
+          <th class="py-3 px-6 text-left">Show Pro</th>
+          <th class="py-3 px-6 text-left">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-600 text-sm font-light">
+        <tr *ngFor="let product of filteredProducts; let i = index"
+          class="border-b border-gray-200 hover:bg-gray-100">
+          <td class="py-3 px-6 text-left whitespace-nowrap">{{i+1}}</td>
+          <td class="py-3 px-6 text-left">{{ product._id }}</td>
+          <td class="py-3 px-6 text-left">{{product.title}}</td>
+          <td class="py-3 px-6 text-left">
+            <img src="{{product.image}}" width="50" class="rounded-lg" alt="">
+          </td>
+          <td class="py-3 px-6 text-left">{{ product.description.substring(0,50) }}</td>
+          <td class="py-3 px-6 text-left">{{ product.category }}</td>
+          <td class="py-3 px-6 text-left">${{ product.price }}</td>
+          <td class="py-3 px-6 text-left font-bold" [ngClass]="{ 'text-blue-500': product.isShow, 'text-red-500': !product.isShow }">
+            {{ product.isShow }}
+          </td>
+          <td class="py-3 px-6 text-left">
+            <div class="flex item-center justify-start space-x-2">
+              <button [routerLink]="['/products', product._id]"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition duration-200">View</button>
+              <button [routerLink]="['/admin/products/edit/', product._id]"
+                class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-200">Edit</button>
+              <button
+                class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
+                (click)="onDeleteProduct(product._id )">Delete</button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

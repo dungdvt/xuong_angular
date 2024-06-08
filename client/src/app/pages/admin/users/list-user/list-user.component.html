@@ -1,0 +1,35 @@
+<div class="container mx-auto mt-20 p-8 bg-gray-100 rounded-lg shadow-lg">
+    <h2 class="text-3xl font-bold text-center mb-8">Danh sách người dùng</h2>
+    <input [(ngModel)]="filterValue" (ngModelChange)="filter()"
+      class="w-64 h-10 pl-4 pr-10 rounded-lg border border-gray-300 focus:outline-none text-black" type="search"
+      placeholder="Tìm kiếm">
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-200 rounded-lg">
+        <thead>
+          <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+            <th class="py-3 px-6 text-left">ID</th>
+            <th class="py-3 px-6 text-left">Email</th>
+            <th class="py-3 px-6 text-left">UserName</th>
+            <th class="py-3 px-6 text-left">Actions</th>
+          </tr>
+        </thead>
+        <tbody class="text-gray-600 text-sm font-light">
+          <tr *ngFor="let user of filteredUser; let i = index"
+            class="border-b border-gray-200 hover:bg-gray-100">
+            <td class="py-3 px-6 text-left whitespace-nowrap">{{i + 1}}</td>
+            <td class="py-3 px-6 text-left">{{user.email}}</td>
+            <td class="py-3 px-6 text-left">{{user.username}}</td>
+            <td class="py-3 px-6 text-left">
+              <div class="flex item-center justify-start space-x-2">
+                <!-- <button [routerLink]="['/admin/products/edit/', user._id]"
+                  class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition duration-200">Edit</button> -->
+                <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition duration-200"
+                  (click)="onDeleteUser(user._id)">Delete</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
