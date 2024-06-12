@@ -1,4 +1,5 @@
 import { Bid } from "./Bid";
+import { Category } from "./Category";
 
 export type Product = {
 bidPriceMax: any;
@@ -6,7 +7,7 @@ bidPriceMax: any;
   title: string;
   price: number;
   description: string;
-  category: string;
+  category: Category;
   image: string;
   isShow: boolean;
   bids: Bid[];

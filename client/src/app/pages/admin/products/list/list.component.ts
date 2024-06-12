@@ -1,12 +1,10 @@
-import { Component, inject } from '@angular/core';
-
-
-
+import { Component } from '@angular/core';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../../../../types/Product';
 import { ProductService } from '../../../../services/product.service';
+
 
 @Component({
   selector: 'app-list',
@@ -16,6 +14,7 @@ import { ProductService } from '../../../../services/product.service';
   styleUrl: './list.component.css'
 })
 export class ProductListComponent {
+  
   products: Product[] = [];
   filteredProducts: Product[] = [];
   filterValue: string = '';
@@ -25,6 +24,7 @@ export class ProductListComponent {
   // cal api ngOnInit
   ngOnInit() {
     this.loadAllData();
+    
   }
   loadAllData() {
     this.productService.getAllProducts().subscribe((res) => {
@@ -34,6 +34,8 @@ export class ProductListComponent {
     });
     
   }
+  
+  
 
   onDeleteProduct(id: any): void {
     const conf = window.confirm('are you sure you want to delete this product?');

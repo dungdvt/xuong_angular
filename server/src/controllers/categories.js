@@ -6,7 +6,7 @@ class CategoriesController {
   // GET /categories
   async getAllCategories(req, res, next) {
     try {
-      const categories = await Category.find();
+      const categories = await Category.find().populate('categories');
       res.status(StatusCodes.OK).json(categories);
     } catch (error) {
       next(error);

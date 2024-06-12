@@ -32,7 +32,7 @@
             <img src="{{product.image}}" width="50" class="rounded-lg" alt="">
           </td>
           <td class="py-3 px-6 text-left">{{ product.description.substring(0,50) }}</td>
-          <td class="py-3 px-6 text-left">{{ product.category }}</td>
+          <td class="py-3 px-6 text-left">{{ product.category.name}}</td>
           <td class="py-3 px-6 text-left">${{ product.price }}</td>
           <td class="py-3 px-6 text-left font-bold" [ngClass]="{ 'text-blue-500': product.isShow, 'text-red-500': !product.isShow }">
             {{ product.isShow }}
